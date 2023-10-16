@@ -52,33 +52,33 @@ let persona1 = new Persona('Maria', 'Lopez', 'Barcelona', 25, 'Carrera', false)
 let persona2 = new Persona('Manuel', 'Ortiz', 'Toledo', 19, 'Grado Superior', true)
 let persona3 = new Persona('Pedro', 'Garcia', 'Sevilla', 17, 'ESO', true)
 
-//Array de objetos
-const personas = [
-   persona1,
-   persona2,
-   persona3
-];
+const mapPersona = new Map([
+    ["03940032K", persona1],
+    ["05728943F", persona2],
+    ["93647712J", persona3]
+])
 
-// Ordenar por nombre
-personas.sort((a, b) => {
-    if (a.nombre < b.nombre) {
-        return -1;
-    }
-    if (a.nombre > b.nombre) {
-        return 1;
-    }
-    return 0;
-});
+const mapOrdenadoPorDni = new Map([...mapPersona.entries()].sort());
+const mapOrdenadoPorEdad = new Map([...mapPersona.entries()].sort((a, b) => {
+    const edadA = a[1].Edad
+    const edadB = b[1].Edad
+    return edadA - edadB
+}))
 
-// Imprimir array con el metodo toString()
-for(p of personas) {
-    document.write(p.toString())
-    document.write('<br><br>')
+const rellenarTabla = () => {
+    const cuerpo = document.getElementById('tabla-persona')
+    mapOrdenadoPorEdad.forEach((persona, dni) => {
+        const fila = document.createElement('tr')
+        fila.innerHTML = `
+            <td>${dni}</td>
+            <td>${persona.nombre}</td>
+            <td>${persona.apellidos}</td>
+            <td>${persona.poblacion}</td>
+            <td>${persona.Edad}</td>
+            <td>${persona.Estudios}</td>
+        `
+        cuerpo.appendChild(fila)
+    })
 }
 
-
-
-
-
-
-
+rellenarTabla()
