@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        // Ejercicio 3
+        class Coche {
+            constructor(marca, modelo, precio, año_matriculacion, url) {
+                this._marca = marca
+                this._modelo = modelo
+                this._precio = precio
+                this._año_matriculacion = año_matriculacion
+                this._url = url
+            }
+
+            get Marca() {
+                return this._marca
+            }
+
+            get Modelo() {
+                return this._modelo
+            }
+
+            get Precio() {
+                return this._precio
+            }
+
+            get Año() {
+                return this._año_matriculacion
+            }
+
+            get Url() {
+                return this._url
+            }
+        }
+
+
+        const coche1 = new Coche("Toyota", "GT86", "20000", "2012", "./img/toyotaGT86.jpg")
+        const coche2 = new Coche("Mercedes", "Maybach", "253000", "2023", "./img/maybach.jpg")
+        const coche3 = new Coche("Ferrari", "F40", "800000", "1987", "./img/f40.jpg")
+        const coche4 = new Coche("Ford", "Mustang", "57000", "2023", "./img/mustang.jpg")
+        const coche5 = new Coche("Audi", "RS3", "80000", "2023", "./img/rs3.jpg")
+
+        let listaCoche = [coche1, coche2, coche3, coche4, coche5]
+
+        for(coches of listaCoche) {
+            console.log(coches)
+        }
+
+        // Ejercicio 4
+        const pintaCoches = (arr) => {
+            for(coches of arr) {
+                document.write("<p>"
+                                    + "<br>Marca: " + coches.Marca 
+                                    + "<br>Modelo: " + coches.Modelo 
+                                    + "<br>Precio: " + coches.Precio 
+                                    + "<br>Año: " + coches.Año 
+                                    + "<br>Imagen: " + '<a href="' + coches.Url + '"> Imagen Coche </a>' +
+                                "</p>")
+            }
+        }
+
+        pintaCoches(listaCoche)
+    </script>
+</body>
+</html>
