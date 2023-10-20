@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+    Checkbox 1: <input id="input1" type="checkbox">
+    Checkbox 2: <input id="input2" type="checkbox">
+    Checkbox 3: <input id="input3" type="checkbox">
+  <script>
+    const input1 = document.querySelector('#input1')
+    const input2 = document.querySelector('#input2')
+    const input3 = document.querySelector('#input3')
+
+    input1.addEventListener('click', (e) => {
+        if(input2.checked || input3.checked){
+            input2.checked = false
+            input3.checked = false
+        }
+    })
+
+    input2.addEventListener('click', (e) => {
+        if(input1.checked || input3.checked){
+            input1.checked = false
+            input3.checked = false
+        }
+    })
+
+    input3.addEventListener('click', (e) => {
+        if(input1.checked || input2.checked) {
+            input1.checked = false
+            input2.checked = false
+        }
+    })
+  </script>
+</body>
+
+</html>
