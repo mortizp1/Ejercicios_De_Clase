@@ -6,16 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    Checkbox 1: <input class="input" type="checkbox">
-    Checkbox 2: <input class="input" type="checkbox">
-    Checkbox 3: <input class="input" type="checkbox">
+    Checkbox 1: <input class="input" type="checkbox" onclick="verificarCheckbox(this)">
+    Checkbox 2: <input class="input" type="checkbox" onclick="verificarCheckbox(this)">
+    Checkbox 3: <input class="input" type="checkbox" onclick="verificarCheckbox(this)">
   <script>
-    const inputs = [document.querySelectorAll('.input')]
-    for(numInputs of inputs){
-        console.log(typeof numInputs)
-    }
+    // Array dde checkboxes, no pongo llaves porque se crea automaticamente
+    let inputs = document.querySelectorAll('.input')
 
-    
+    // Funcion con checkbox como parametro para llamarla luego en el input
+    const verificarCheckbox = checkbox => {
+    // Si el checkbox que se pasa al hacer click esta marcado -> se recorre el array
+      if(checkbox.checked) {
+        // Se reccorre el array y, si el checkbox (cbox) es diferente del checkbox pasado como parametro
+        // es decir, en el que hemos hecho click, entonces, se desmarca
+        inputs.forEach((cbox) => {
+            if(cbox !== checkbox){
+              cbox.checked = false
+            }
+        })
+      }
+    } 
   </script>
 </body>
 </html>
