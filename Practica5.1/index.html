@@ -31,63 +31,55 @@
             <input type="password" class="form-control" id="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,10}$" required>
             <div class="invalid-feedback">La contraseña debe tener entre 8 y 10 caracteres y al menos un dígito o alfanumérico.</div>
         </div>
-        <!-- Código postal: Asumo un código postal español de 5 dígitos. -->
+
 <div class="form-group">
     <label for="postalCode">Código postal:</label>
     <input type="text" class="form-control" id="postalCode" pattern="^\d{5}$" required>
     <div class="invalid-feedback">Introduzca un código postal válido.</div>
 </div>
 
-<!-- Número entero -->
 <div class="form-group">
     <label for="integerNumber">Número entero:</label>
     <input type="text" class="form-control" id="integerNumber" pattern="^-?\d+$" required>
     <div class="invalid-feedback">Introduzca un número entero válido.</div>
 </div>
 
-<!-- Número real -->
 <div class="form-group">
     <label for="realNumber">Número real:</label>
     <input type="text" class="form-control" id="realNumber" pattern="^-?\d*(\.\d+)?$" required>
     <div class="invalid-feedback">Introduzca un número real válido.</div>
 </div>
 
-<!-- Número de teléfono (asumiendo un formato español) -->
 <div class="form-group">
     <label for="phoneNumber">Número de teléfono:</label>
     <input type="tel" class="form-control" id="phoneNumber" pattern="^(\+34|0034|34)?[6-9][0-9]{8}$" required>
     <div class="invalid-feedback">Introduzca un número de teléfono válido.</div>
 </div>
 
-<!-- Número de teléfono internacional -->
 <div class="form-group">
     <label for="intPhoneNumber">Número de teléfono internacional:</label>
     <input type="tel" class="form-control" id="intPhoneNumber" pattern="^\+\d{1,3}\s?\d{1,14}$" required>
     <div class="invalid-feedback">Introduzca un número de teléfono internacional válido.</div>
 </div>
 
-<!-- Fecha (formato YYYY-MM-DD) -->
 <div class="form-group">
     <label for="date">Fecha:</label>
     <input type="date" class="form-control" id="date" required>
     <div class="invalid-feedback">Introduzca una fecha válida.</div>
 </div>
 
-<!-- Email -->
 <div class="form-group">
     <label for="email">Email:</label>
     <input type="email" class="form-control" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
     <div class="invalid-feedback">Introduzca un email válido.</div>
 </div>
 
-<!-- DNI (Formato español) -->
 <div class="form-group">
     <label for="dni">DNI:</label>
     <input type="text" class="form-control" id="dni" pattern="^\d{8}[A-Za-z]$" required>
     <div class="invalid-feedback">Introduzca un DNI válido.</div>
 </div>
 
-<!-- URL -->
 <div class="form-group">
     <label for="url">URL:</label>
     <input type="url" class="form-control" id="url" pattern="^(http[s]?://www\.|www\.|http[s]?://)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?$" required>
@@ -121,7 +113,6 @@
     </form>
 </div>
 
-<!-- Javascript -->
 <script>
     const form = document.getElementById('registerForm');
     form.addEventListener('submit', function(event) {
