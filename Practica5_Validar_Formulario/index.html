@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formulario</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="container m-5">
+    <h2>Formulario Datos Personales</h2>
+    <form id="formRegistro">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="Numerotc">Número de tarjeta de crédito:</label>
+            <input type="text" class="form-control" id="Numerotc" required>
+            <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="usuario">Usuario:</label>
+            <input type="text" class="form-control" id="usuario" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control" id="password" required>
+            <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="codigoPostal">Código postal:</label>
+            <input type="text" class="form-control" id="codigoPostal" required>
+            <div class="invalid-feedback"></div>
+        </div>    
+        <div class="form-group">
+            <label for="telefono">Numero Teléfono:</label>
+            <input type="text" class="form-control" id="telefono" required>
+            <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="telefonoInter">Numero Teléfono Internacional:</label>
+            <input type="text" class="form-control" id="telefonoInter" required>
+            <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input type="text" class="form-control" id="fecha" required>
+            <div class="invalid-feedback">.</div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" required>
+            <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="DNI">DNI:</label>
+            <input type="text" class="form-control" id="DNI" required>
+            <div class="invalid-feedback"></div>
+        </div>
+        <div class="form-group">
+            <label for="url">URL:</label>
+            <input type="text" class="form-control" id="url" required>
+            <div class="invalid-feedback"></div>
+        </div>
+        <hr>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="condiciones" required>
+            <label class="form-check-label" for="condiciones">Aceptar condiciones</label>
+            <div class="invalid-feedback"></div>
+        </div>
+        <hr>
+        <h5>Publicidad:</h5>
+        <div class="form-check">
+            <input class="form-check-input checkbox-publi" type="checkbox" id="empresa1">
+            <label class="form-check-label" for="empresa1">Empresa 1</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input checkbox-publi" type="checkbox" id="empresa2">
+            <label class="form-check-label" for="empresa2">Empresa 2</label>
+        </div>
+        <button type="button" class="btn btn-link" id="btn1">Seleccionar todos</button> | 
+        <button type="button" class="btn btn-link" id="btn2">Deseleccionar todos</button>
+        <hr>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    window.addEventListener('DOMContentLoaded',function(){
+
+    // Array de objetos que almacena todos los inputs
+    const campos = [
+        {id: 'Numerotc', regexp: /^\d{4}-\d{4}-\d{4}-\d{4}$/, errorMsg: 'Formato de tarjeta no válido (XXXX-XXXX-XXXX-XXXX)'},
+        {id: 'password', regexp: /^(?=.*\d)[A-Za-z\d]{8,10}$/, errorMsg: 'Debe contener de 8 a 10 caracteres, un digito o un alfanumérico'},
+        {id: 'codigoPostal', regexp: /^\d{5}$/, errorMsg: 'Formato de Código Postal no válido (XXXXX)'},
+        {id: 'numReal', regexp: /^-?(\d+|\d+\.\d*|\.\d+)$/, errorMsg: 'Formato de numero real inválido'},
+        {id: 'telefono', regexp: /^[679]{1}\d{8}$/, errorMsg: 'Número de teléfono inválido'},
+        {id: 'telefonoInter', regexp: /^\+[1-9]\d{1,14}$/, errorMsg: 'Número internacional inválido (España: +34)'},
+        {id: 'fecha', regexp: /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/, errorMsg: 'Error en el formato de la fecha (dd-MM-yyyy)'},
+        {id: 'email', regexp: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, errorMsg: 'Formato de email inválido'},
+        {id: 'DNI', regexp: /^\d{8}[A-HJ-NP-TV-Z]$/i, errorMsg: 'Formato de DNI incorrecto'},
+        {id: 'url', regexp: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, errorMsg: 'Formato de URL inválido'}
+    ]
+
+    // Evento de escucha para verificar cada input cuando se intente enviar el form
+    document.getElementById('formRegistro').addEventListener('submit', function(evento){
+        evento.preventDefault()
+
+        let valido = true
+
+        campos.forEach(campo => {
+            const input = document.getElementById(campo.id)
+            valido = validaCampo(input, campo.regexp, campo.errorMsg) && valido
+        })
+
+        if(valido && document.getElementById('condiciones').checked === true) this.submit()
+        
+    })
+
+    // Definicion de funciones
+
+    // Validar input
+    function validaCampo(input, regexp, msg){
+        const valor = input.value.trim()
+        if(valor.match(regexp)){
+            marcarValido(input)
+            return true
+        } else {
+            marcarError(input, msg)
+            return false
+        }
+
+    }
+
+    // Marcar input como valido
+    function marcarValido(p){
+        p.parentNode.querySelector(".invalid-feedback").textContent=""
+        p.parentNode.classList.remove("error")
+    }
+
+    // Marcar input como invalido / error
+    function marcarError(p1, msg){
+        p1.parentNode.querySelector(".invalid-feedback").textContent=msg
+        p1.parentNode.classList.add("error")
+        p1.classList.add("is-invalid")
+    }
+
+    // Seleccionar todas las empresas
+    document.querySelector('#btn1').addEventListener('click', (e) => {
+        const checkbox = document.querySelectorAll('.checkbox-publi')
+        checkbox.forEach(checkbox => {
+            checkbox.checked = true;
+        });
+    })
+
+    // Deseleccionar todas las empresas
+    document.querySelector('#btn2').addEventListener('click', (e) => {
+        const checkbox = document.querySelectorAll('.checkbox-publi')
+        checkbox.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    })
+})
+</script>
+</body>
+</html>
