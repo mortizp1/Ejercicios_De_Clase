@@ -1,0 +1,65 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>DOM basico y atributos XHTML</title>
+</head>
+
+<body>
+    <p id="contenidos_1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_1" href="#">Ocultar contenidos</a>
+    <br />
+    <p id="contenidos_2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_2" href="#">Ocultar contenidos</a>
+    <br />
+    <p id="contenidos_3">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus
+        libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. Quisque sapien nunc,
+        posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices
+        porttitor, pede. Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis,
+        faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
+        posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.</p>
+    <a id="enlace_3" href="#">Ocultar contenidos</a>
+    <script>
+        /*  A partir de la página web proporcionada, completar el código JavaScript para que:
+ 
+ 1.   Cuando se pinche sobre el primer enlace, se oculte su sección relacionada
+ 2.   Cuando se vuelva a pinchar sobre el mismo enlace, se muestre otra vez esa sección de contenidos
+ 3.   Completar el resto de enlaces de la página para que su comportamiento sea idéntico al del primer enlace
+ 4.   Cuando una sección se oculte, debe cambiar el mensaje del enlace asociado (pista: textContent);
+ 
+  */
+
+
+        function muestraOculta(id) {
+            let contenido = document.getElementById('contenidos_' + id);
+            let enlace = document.getElementById('enlace_' + id);
+
+            if (contenido.style.display === '' || contenido.style.display === 'block') {
+                contenido.style.display = 'none';
+                enlace.textContent = 'Mostrar contenidos';
+            } else {
+                contenido.style.display = 'block';
+                enlace.textContent = 'Ocultar contenidos'; 
+            }
+
+        }
+
+        document.getElementById('enlace_1').addEventListener('click',function() { muestraOculta(1) });
+        document.getElementById('enlace_2').addEventListener('click',function() { muestraOculta(2) });
+        document.getElementById('enlace_3').addEventListener('click',function() { muestraOculta(3) });
+    </script>
+</body>
+
+</html>
