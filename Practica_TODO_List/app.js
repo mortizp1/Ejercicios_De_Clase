@@ -16,7 +16,7 @@ function crearTarea(evento) {
         nuevaTarea.querySelector('p').textContent = tareaTexto
         lista.appendChild(nuevaTarea)
         texto.value = ''
-    }    
+    } 
 }
 
 lista.addEventListener('click', (e) => {
@@ -38,6 +38,7 @@ function marcarComoHecha(botonHecho) {
     elementoTarea.classList.add("alert-success")
     botonHecho.remove()
 }
+
 
 
 
